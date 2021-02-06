@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "229715309888",
+    "firebase_url": "https://team-up-e3ae3.firebaseio.com",
+    "project_id": "team-up-e3ae3",
+    "storage_bucket": "team-up-e3ae3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229715309888:android:5c3ac2ff2f03b7f7cf76a5",
+        "android_client_info": {
+          "package_name": "com.example.teamup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229715309888-j8vf6btrb0l1pu3pm3baap8051942a0s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.teamup",
+            "certificate_hash": "30ee1fd4df21b027a1b3923fd4128f11b2b2d16c"
+          }
+        },
+        {
+          "client_id": "229715309888-tqqtkusbdo8f3217it51e43nh9kto3dv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuJUPKazVyEtJxtJG3gFr8yfTOj93iFIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229715309888-tqqtkusbdo8f3217it51e43nh9kto3dv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
