@@ -34,6 +34,7 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.radar.sdk.Radar;
 
 public class MainActivity extends AppCompatActivity {
     EditText emailId, password,teamcode,username;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Radar.initialize(this, "prj_test_pk_97c6fc2541aa46acf49104d64e08881638fd6753");
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.editText1);
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignUp = findViewById(R.id.button2);
         tvSignIn = findViewById(R.id.textView);
         teamcode=findViewById(R.id.teamcode);
-        circleimg=(CircleImageView)findViewById(R.id.cicimg);
+        circleimg= findViewById(R.id.cicimg);
         circleimg.setImageResource(R.drawable.loginback);
         storageReference= FirebaseStorage.getInstance().getReference("profile_uploads");
         sharedPreferences=getSharedPreferences(SHARED_PRE,MODE_PRIVATE);

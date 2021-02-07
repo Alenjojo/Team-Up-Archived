@@ -1,12 +1,16 @@
 package com.example.teamup;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +22,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import com.example.teamup.Adapter.PostAdapter;
+
+import io.radar.sdk.Radar;
+import io.radar.sdk.model.RadarEvent;
+import io.radar.sdk.model.RadarUser;
 
 public class HomeActivity extends AppCompatActivity {
     LinearLayout llContext;
@@ -50,6 +58,34 @@ public class HomeActivity extends AppCompatActivity {
 //        fbname=findViewById(R.id.proname);
 //        prourl=findViewById(R.id.prourl);
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_BACKGROUND_LOCATION }, 0);
+        } else {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 0);
+        }
+        Location origin = new Location("mock");
+        origin.setLatitude(40.78382);
+        origin.setLongitude(-73.97536);
+
+        Location destination = new Location("mock");
+        destination.setLatitude(40.70390);
+        destination.setLongitude(-73.98670);
+
+//        Radar.mockTracking(
+//                origin,
+//                destination,
+//                Radar.RadarRouteMode.CAR,
+//                10,
+//                3,
+//                new RadarCallback() {
+//                    @Override
+//                    public void onComplete(Radar.RadarStatus status, Location location, RadarEvent[] events, RadarUser user) {
+//                        // do something with location, events, user
+//                    }
+//                }
+//        );
+
         chipNavigationBar=findViewById(R.id.chipnavigation);
         chipNavigationBar.setItemSelected(R.id.home,true);
         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout,new Fragment_Home()).commit();
@@ -77,125 +113,8 @@ public class HomeActivity extends AppCompatActivity {
 
         chipNavigationBar.showBadge(R.id.home);
         chipNavigationBar.showBadge(R.id.chats, 88);
-//        menu.showBadge(R.id.menu_favorites, 88)
-//        menu.showBadge(R.id.settings, 10000)
-
-//       // progressBar=findViewById(R.id.progressBar);
-//       // progressBar.setVisibility(View.VISIBLE);
-//        sharedPreferences=getSharedPreferences(SHARED_PRE,MODE_PRIVATE);
-//        teamcode=sharedPreferences.getString(TEAM_CODE,null);
-//         fbproname=sharedPreferences.getString(NAME,null);
-//         url=sharedPreferences.getString(URL,null);
-//         uid=sharedPreferences.getString(UID,null);
-//
-//
-////teamcode="team 1";
-////        fbname.setText(fbproname);
-//        Picasso.get().load(url).error(R.drawable.loginback).into(prourl);
-//
-//            Get = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-//            Get.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot){
-//                    String name = (String) dataSnapshot.child("username").getValue();
-//                    String teamcodefire= (String) dataSnapshot.child("teamcode").getValue();
-//                    String profile_img= (String) dataSnapshot.child("profile_image").getValue();
-//                    fbname.setText(name);
-//                    Picasso.get().load(profile_img).error(R.drawable.loginback).into(prourl);
-//
-//                    SharedPreferences.Editor editor=sharedPreferences.edit();
-//                    editor.putString(TEAM_CODE,teamcodefire);
-//                    editor.putString(URL,profile_img);
-//                    editor.putString(NAME,name);
-//                    editor.apply();
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError){
-//
-//                }
-//
-//
-//        recyclerView = findViewById(R.id.recyclerDashboard);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//if(teamcode!=null) {
-//    FirebaseRecyclerOptions<Post> options = new FirebaseRecyclerOptions.Builder<Post>()
-//                    .setQuery(FirebaseDatabase.getInstance().getReference().child("teams").child(teamcode), Post.class)
-//                    .build();
-//
-//    adapter = new PostAdapter(options);
-//    recyclerView.setAdapter(adapter);
-//}
-//      //  progressBar.setVisibility(View.GONE);
-//
-//
-//
-//        btnSet=findViewById(R.id.imageButton3);
-//        btnMes=findViewById(R.id.imageButton);
-//        btnPro=findViewById(R.id.imageButton2);
-//        btnaddmem=findViewById(R.id.btnadd);
-//        llContext=findViewById(R.id.llcontent);
-//
-//
-
-//        });
-//        btnMes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intSignUp = new Intent(HomeActivity.this, MessageActivity.class);
-//                startActivity(intSignUp);
-//             //   fragment_chat=new Fragment_Chat();
-//             //   getSupportFragmentManager().beginTransaction().replace(R.id.framelay,fragment_chat).commit();
-//            }
-//        });
-//        btnPro.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intSignUp = new Intent(HomeActivity.this, ProfileActivity.class);
-//                startActivity(intSignUp);
-//               // fragment_users=new Fragment_Users();
-//              //  getSupportFragmentManager().beginTransaction().replace(R.id.framelay,fragment_users).commit();
-//            }
-//        });
-//         btnaddmem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intSignUp = new Intent(HomeActivity.this, AddProjectActivity.class);
-//                startActivity(intSignUp);
-//            }
-//        });
-//      /*  llContext.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(HomeActivity.this,ProjectActivity.class);
-//                startActivity(intent);
-//            }
-//        });*/
 
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        adapter.startListening();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        adapter.stopListening();
-//    }
+
 }
-/*<RelativeLayout
-            android:id="@+id/progressLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#fff">
-
-<ProgressBar
-                android:id="@+id/progressBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"/>
-
-</RelativeLayout>*/

@@ -34,7 +34,7 @@ public class Fragment_Users extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view=inflater.inflate(R.layout.fragment_users,container,false);
 
-        recyclerView=(RecyclerView)view.findViewById(R.id.recyclerusers);
+        recyclerView= view.findViewById(R.id.recyclerusers);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mProfile=new ArrayList<>();
@@ -71,4 +71,5 @@ public class Fragment_Users extends Fragment {
             }
         });
     }
+
 }
