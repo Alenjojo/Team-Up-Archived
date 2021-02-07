@@ -24,6 +24,7 @@ import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 import com.example.teamup.Adapter.PostAdapter;
 
 import io.radar.sdk.Radar;
+import io.radar.sdk.model.RadarContext;
 import io.radar.sdk.model.RadarEvent;
 import io.radar.sdk.model.RadarUser;
 
@@ -57,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 //        fbname=findViewById(R.id.proname);
 //        prourl=findViewById(R.id.prourl);
+        Radar.initialize(this, "prj_test_pk_97c6fc2541aa46acf49104d64e08881638fd6753");
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -64,27 +66,13 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, 0);
         }
-        Location origin = new Location("mock");
-        origin.setLatitude(40.78382);
-        origin.setLongitude(-73.97536);
 
-        Location destination = new Location("mock");
-        destination.setLatitude(40.70390);
-        destination.setLongitude(-73.98670);
-
-//        Radar.mockTracking(
-//                origin,
-//                destination,
-//                Radar.RadarRouteMode.CAR,
-//                10,
-//                3,
-//                new RadarCallback() {
-//                    @Override
-//                    public void onComplete(Radar.RadarStatus status, Location location, RadarEvent[] events, RadarUser user) {
-//                        // do something with location, events, user
-//                    }
-//                }
-//        );
+        Radar.getContext(new Radar.RadarContextCallback() {
+            @Override
+            public void onComplete(Radar.RadarStatus status, Location location, RadarContext context) {
+                // do something with context
+            }
+        });
 
         chipNavigationBar=findViewById(R.id.chipnavigation);
         chipNavigationBar.setItemSelected(R.id.home,true);
