@@ -22,11 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 import com.example.teamup.Adapter.PostAdapter;
-
 import io.radar.sdk.Radar;
 import io.radar.sdk.model.RadarContext;
-import io.radar.sdk.model.RadarEvent;
-import io.radar.sdk.model.RadarUser;
 
 public class HomeActivity extends AppCompatActivity {
     LinearLayout llContext;
@@ -40,7 +37,9 @@ public class HomeActivity extends AppCompatActivity {
     private static final String URL="phurl";
     private static final String UID="userID";
     private static final String FBLOG="fblogin";
-   // ProgressBar progressBar;
+    private static Location LOC = null;
+
+    // ProgressBar progressBar;
     TextView fbname;
     ImageView prourl;
     private FirebaseAuth user;
@@ -71,6 +70,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onComplete(Radar.RadarStatus status, Location location, RadarContext context) {
                 // do something with context
+                LOC = location;
             }
         });
 
